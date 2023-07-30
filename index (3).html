@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enigma Quest</title>
+</head>
+<body>
+  <h1>Enigma Quest</h1>
+  <label for="inputValue">Enter Value: </label>
+  <input type="text" id="inputValue">
+  <br>
+  <label for="schoolName">Enter School Name: </label>
+  <input type="text" id="schoolName">
+  <br>
+  <button onclick="checkValue()">Check</button>
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    // Initialize Email.js with your credentials
+    emailjs.init("vhJkMX2faWlPcsVpS");
+
+    // Function to send an email with timestamp and school name
+    function sendEmail(schoolName) {
+      const templateParams = {
+        to_email: "enigmaquestdpsbn@gmail.com", // Replace with the recipient Gmail address
+        from_name: "Your Name",
+        message: `User entered value: 728700000 at ${new Date().toLocaleString()}\nSchool Name: ${schoolName}`,
+      };
+
+      // Send the email using Email.js through Gmail
+      emailjs.send("gmail", "template_3f12id9", templateParams)
+        .then(function (response) {
+          console.log("Email sent successfully!", response);
+        }, function (error) {
+          console.log("Failed to send email:", error);
+        });
+    }
+
+    // Function to check the user-entered value and school name
+    function checkValue() {
+      const enteredValue = document.getElementById("inputValue").value.trim();
+      const targetValue = "728700000";
+      const schoolName = document.getElementById("schoolName").value.trim();
+
+      if (enteredValue === targetValue) {
+        alert("Value matched!");
+        sendEmail(schoolName); // Send email with school name if the value matches
+      } else {
+        alert("Value does not match!");
+      }
+    }
+  </script>
+</body>
+</html>

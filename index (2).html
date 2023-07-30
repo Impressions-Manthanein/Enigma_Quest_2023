@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Finals</title>
+</head>
+
+<body>
+  <h1>Welcome to the Final Stage of Enigma Quest!</h1>
+  <p id="viewerCount">0 viewers</p>
+
+  <script>
+    // Function to update the viewer count on the webpage
+    function updateViewerCount(count) {
+      const viewerCountElement = document.getElementById("viewerCount");
+      viewerCountElement.textContent = count === 1 ? "1 viewer" : `${count} viewers`;
+    }
+
+    // Function to check the viewer count and cutoff if necessary
+    function checkViewerCount() {
+      const MAX_VIEWERS = 2;
+      const viewerCount = parseInt(localStorage.getItem("viewerCount")) || 0;
+
+      if (viewerCount >= MAX_VIEWERS) {
+        // Cutoff the website if the maximum number of viewers is reached
+        document.body.innerHTML = "<h1>We Are looking for the leaders not the followers,Thank you for Particiapating in Manthanein Engima Quest </h1>";
+      } else {
+        // Increment the viewer count and update the display
+        const newViewerCount = viewerCount + 1;
+        localStorage.setItem("viewerCount", newViewerCount);
+        updateViewerCount(newViewerCount);
+      }
+    }
+
+    // Function to decrement the viewer count when a viewer leaves the website
+    function decrementViewerCount() {
+      const viewerCount = parseInt(localStorage.getItem("viewerCount")) || 0;
+
+      if (viewerCount > 0) {
+        const newViewerCount = viewerCount - 1;
+        localStorage.setItem("viewerCount", newViewerCount);
+        updateViewerCount(newViewerCount);
+      }
+    }
+
+    // Check the viewer count when the page loads
+    window.onload = checkViewerCount;
+
+    // Decrement the viewer count when the page is closed or refreshed
+    window.onbeforeunload = decrementViewerCount;
+  </script>
+</body>
+
+</html>

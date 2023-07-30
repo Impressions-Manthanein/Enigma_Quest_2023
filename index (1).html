@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Share .wav File</title>
+  <style>
+    /* Hide the default button style */
+    .invisible-button {
+      display: inline-block;
+      background-color: transparent;
+      border: none;
+      color: transparent;
+      text-decoration: none;
+    }
+
+    /* Show a custom icon or text instead of the button */
+    .invisible-button::before {
+      content: "Download .wav File";
+      /* You can use an icon here as well */
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Split the link into multiple parts to make it less obvious
+      var part1 = "https://drive.google.com/file/d/1";
+      var part2 = "edfsQlJ2FYTMlkRW9F-ts1tGVGiT_Z0y";
+      var part3 = "/view?usp=download";
+      var obfuscatedLink = part1 + part2 + part3;
+
+      var downloadLink = document.getElementById("download-link");
+      downloadLink.href = obfuscatedLink;
+    });
+  </script>
+</head>
+
+<body>
+  <h1>Manthanein Enigma Quest</h1>
+  <p>Find your way to download the file</p>
+  <!-- The actual link is hidden within the span element -->
+  <span class="invisible-button"><a id="download-link" href="#" download></a></span>
+</body>
+
+</html>
